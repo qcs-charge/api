@@ -1,0 +1,26 @@
+{% load static %}
+{% url 'api' as api_url %}
+{% url 'api_docs' as api_docs_url %}
+{% url 'homepage' as homepage_url %}
+{% url 'live_view' as live_view_url %}
+<header class="p-3 mb-3 border-bottom">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="{{ homepage_url }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <img src="{% static 'img/logo.png' %}" alt="Logo" width="30" height="30">
+                <span class="fs-3 ms-2">QCS</span>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{{ homepage_url }}" class="nav-link px-2 {% if request.path == homepage_url %}link-secondary{% else %}link-dark{% endif %}">Overview</a></li>
+                <li><a href="{{ api_docs_url }}" class="nav-link px-2 {% if request.path == api_docs_url or request.path == api_url %}link-secondary{% else %}link-dark{% endif %}">API Docs</a></li>
+                <li><a href="{{ live_view_url }}" class="nav-link px-2 {% if request.path == live_view_url %}link-secondary{% else %}link-dark{% endif %}">Live View</a></li>
+                <li><a href="{% url 'source' %}" target="_blank" class="nav-link px-2 link-dark">Source</a></li>
+            </ul>
+
+            <div>
+                <a href="/lk" class="btn btn-outline-dark">Login</a>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,49 @@
+{% extends 'includes/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-end">
+        <h1 class="display-5 fw-bold">Live View</h1>
+        <p><a onclick="window.location.reload();" class="btn btn-dark">Reload</a></p>
+    </div>
+
+    <table class="table">
+        <thead style="font-weight: bold;">
+            <tr>
+                <td scope="col">#</td>
+                <td scope="col">ID</td>
+                <td scope="col">Aruco ID</td>
+                <td scope="col">Status</td>
+                <td scope="col">Vacate</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in stations %}
+            <tr>
+                <td scope="row">{{ forloop.counter }}</td>
+
+                <td><code>{{ i.id }}</code></td>
+                
+                <td><code>aruco_{{ i.aruco }}</code></td>
+                
+                {% if i.opened and not i.done %}
+                <td class="table-warning">Opening</td>
+                {% elif i.opened and i.done %}
+                <td class="table-success">Opened</td>
+                {% elif not i.opened and not i.done %}
+                <td class="table-warning">Closing</td>
+                {% else %}
+                <td class="table-success">Closed</td>
+                {% endif %}
+
+                {% if i.disabled %}
+                <td class="table-danger">✗</td>
+                {% else %}
+                <td class="table-success">✓</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

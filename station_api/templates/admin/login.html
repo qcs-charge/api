@@ -1,0 +1,107 @@
+{% extends "includes/base.html" %}
+{# {% extends "admin/base_site.html" %} #}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static " admin/css/login.css" %}">
+{{ form.media }}
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+{% endblock %}
+
+{% block extra_head %}
+<style>
+  #id_username,
+  #id_password {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  }
+
+  label {
+    margin-bottom: 0.5rem;
+  }
+</style>
+{% endblock extra_head %}
+
+{% block bodyclass %}{{ block.super }} login{% endblock %}
+
+{% block usertools %}{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block nav-sidebar %}{% endblock %}
+
+{% block content_title %}{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div class="container col-lg-6 mx-auto my-4">
+  <h1 class="display-5 fw-bold text-center mb-4">Cервисы администрирования</h1>
+
+  <div class="card shadow border-0 px-2 py-3">
+    <div class="card-body">
+      {% if form.errors and not form.non_field_errors %}
+      <p class="alert alert-danger">
+        {% if form.errors.items|length == 1 %}{% translate "Please correct the error below." %}{% else %}{% translate
+        "Please correct the errors below." %}{% endif %}
+      </p>
+      {% endif %}
+
+      {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+      <p class="alert alert-danger">
+        {{ error }}
+      </p>
+      {% endfor %}
+      {% endif %}
+
+      <div id="content-main">
+
+        {% if user.is_authenticated %}
+        <p class="alert alert-danger">
+          {% blocktranslate trimmed %}
+          You are authenticated as {{ username }}, but are not authorized to
+          access this page. Would you like to login to a different account?
+          {% endblocktranslate %}
+        </p>
+        {% endif %}
+
+        <form action="{{ app_path }}" method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            {{ form.username.errors }}
+            {{ form.username.label_tag }} {{ form.username }}
+          </div>
+          <div class="mb-3">
+            {{ form.password.errors }}
+            {{ form.password.label_tag }} {{ form.password }}
+            <input type="hidden" name="next" value="{{ next }}">
+          </div>
+          {% url 'admin_password_reset' as password_reset_url %}
+          {% if password_reset_url %}
+          <div class="password-reset-link">
+            <a href="{{ password_reset_url }}">{% translate 'Forgotten your password or username?' %}</a>
+          </div>
+          {% endif %}
+
+          <button type="submit" class="btn btn-dark">{% translate 'Log in' %}</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

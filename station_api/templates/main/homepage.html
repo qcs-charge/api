@@ -1,0 +1,80 @@
+{% extends 'includes/base.html' %}
+{% load static %}
+
+{% block before_header %}
+{% if form_sent %}
+<div class="pt-5 pb-5 border-bottom shadow-lg bg-dark text-white" id="form_sent">
+    <div class="container">
+        <p class="display-5 fw-bold mb-1">Форма успешно отправлена!</p>
+        <p class="fs-4 lead mb-2">Примерное время ответа ~1 день</p>
+        <a href="{% url 'homepage' %}" class="btn btn-sm btn-outline-light">Скрыть</a>
+    </div>
+</div>
+{% endif %}
+{% endblock before_header %}
+
+{% block content %}
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-4 fw-bold mt-5">Charging Station</h1>
+    <div class="col-lg-6 mx-auto mt-3 mb-5">
+        <h2 class="lead mb-4 fs-4" style="line-height: 1.35;">
+            Зарядная станция для квадрокоптеров «QCS» позволяет производить базовое обслуживание дронов,
+            заряжать аккумуляторный блок и анализировать погодные условия в зоне работы коптеров.
+        </h2>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+            <a href="https://youtu.be/y47A4Nyng0Y/" target="_blank" class="btn btn-dark btn-lg px-4 me-sm-3">
+                Watch demo
+            </a>
+            <a href="{% url 'api_docs' %}" class="btn btn-outline-secondary btn-lg px-4">Documentation</a>
+        </div>
+    </div>
+</div>
+
+<div
+    class="border-top border-bottom mt-5 mb-5 shadow-lg"
+    style="height: 60vh; width: 100%; background: url('{% static 'img/model.jpeg' %}') 75%/cover no-repeat;"
+></div>
+
+<div class="px-4 my-5 py-5 text-center">
+    <h2 class="display-4 fw-bold mt-5">
+        Online:
+        <span class="bg-dark text-white ps-4 pe-4 font-monospace">
+            {{ station_count.0 }}&nbsp;{{ station_count.1 }}
+        </span>
+    </h2>
+    <div class="col-lg-6 mx-auto mt-3 mb-5">
+        <p class="lead mb-0 fs-4" style="line-height: 1.35;">
+            Отслеживайте состояние станций в настоящем времени с помощью Live View! Перейти на страницу
+            <a href="{% url 'live_view' %}">Live View</a>
+        </p>
+    </div>
+</div>
+
+<div class="bg-dark text-white py-5 shadow-lg mb-3">
+    <div class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-12">
+                <p class="display-5 fw-bold">Остались вопросы?</p>
+                <p class="lead">Задайте их нам прямо сейчас!</p>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <form action="{% url 'homepage' %}" method="post">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="id_text" class="form-label">Текст вашего вопроса</label>
+                        {{ form.text }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_contact" class="form-label">Как нам с вами связаться?</label>
+                        {{ form.contact }}
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-light">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

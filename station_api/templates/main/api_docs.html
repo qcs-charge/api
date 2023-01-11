@@ -1,0 +1,69 @@
+{% extends 'includes/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="display-5 fw-bold">API documentation</h1>
+
+    <p class="lead mb-0">Request type - <code>GET</code></p>
+
+    <div class="mt-4">
+        <h2 class="mb-0 h1">Station status</h2>
+        <ul>
+            <li><code>00</code> - closing</li>
+            <li><code>01</code> - closed</li>
+            <li><code>10</code> - opening</li>
+            <li><code>11</code> - opened</li>
+        </ul>
+    </div>
+
+
+    <div class="card mt-5">
+        <div class="card-body">
+            <h2 class="mb-3 h1">
+                Station
+                <span class="fs-6">(<code>/api/station?token=INSECURE-11111-11111-11111-11111</code>)</span>
+            </h2>
+            
+            <h3 class="h4">Get info</h3>
+
+            <p><code>&request=ping</code> - ping request. If connection is OK and all services works, returns <code>pong</code>.</p>
+    
+            <p><code>&request=getAruco</code> - returns current station Aruco Marker ID</p>
+
+            <p><code>&request=getStatus</code> - returns current station status</p>
+
+            <h3 class="h4">Edit info</h3>
+            
+            <p><code>&request=setStatus&status=XX</code>, where XX - status (can be <code>01</code> and <code>11</code>). Returns <code>1</code> if done without errors, else <code>0</code>.</p>
+    
+        </div>
+    </div>
+
+    <div class="mt-5 card">
+        <div class="card-body">
+            <h2 class="mb-3 h1">
+                Flight
+                <span class="fs-6">(<code>/api/flight?token=INSECURE-11111-11111-11111-11111</code>)</span>
+            </h2>
+
+            <h3 class="h4">Get info</h3>
+
+            <p><code>&request=ping</code> - ping request. If connection is OK and all services works, returns <code>pong</code></p>
+
+            <p><code>&request=getStation</code> - return ID of empty working station</p>
+
+            <p><code>&request=getAruco&id=XX</code>, where XX - station ID. Returns station Aruco Marker ID</p>
+
+            <p><code>&request=getStatus&id=XX</code>, where XX - station ID. Returns status of station</p>
+
+            <h3 class="h4">Edit info</h3>
+
+            <p><code>&request=orderStation&id=XX</code>, where XX - station ID. Returns <code>1</code> if station have been ordered without errors, else <code>0</code></p>
+
+            <p><code>&request=vacateStation&id=XX</code>, where XX - station ID. Returns <code>1</code> if station have been vacated without errors, else <code>0</code></p>
+
+            <p><code>&request=setStatus&id=XX&status=YY</code>, where XX - station ID, YY - status (can be <code>00</code> and <code>10</code>). Returns <code>1</code> if done without errors, else <code>0</code></p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
