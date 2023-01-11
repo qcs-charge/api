@@ -57,7 +57,7 @@ def api_docs(request):
 
 
 def source(request):
-    return redirect('https://github.com/mikemka/clover/')
+    return redirect('https://github.com/qcs-charge/')
 
 
 def attribution(request):
