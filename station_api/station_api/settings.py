@@ -15,11 +15,17 @@ SECRET_KEY = getenv('SECRET_KEY')
 
 DEBUG = literal_eval(getenv('DEBUG'))
 
-ALLOWED_HOSTS = [
+ALLOWED_HOSTS = (
     'localhost',
     '127.0.0.1',
     getenv('HOST'),
-]
+)
+
+INTERNAL_IPS = (
+    'localhost',
+    '127.0.0.1',
+    getenv('HOST'),
+)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
