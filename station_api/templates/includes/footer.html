@@ -2,11 +2,12 @@
     <div class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item"><a href="{% url 'homepage' %}" class="nav-link px-2 text-muted">Overview</a></li>
+            <li class="nav-item"><a href="{% url 'gallery' %}" class="nav-link px-2 text-muted">Gallery</a></li>
             <li class="nav-item"><a href="{% url 'api_docs' %}" class="nav-link px-2 text-muted">API Docs</a></li>
             <li class="nav-item"><a href="{% url 'live_view' %}" class="nav-link px-2 text-muted">Live View</a></li>
-            <li class="nav-item"><a href="{% url 'source' %}" target="_blank" class="nav-link px-2 text-muted">Source</a></li>
+            <li class="nav-item"><a href="{% url 'source' %}" class="nav-link px-2 text-muted" target="_blank">Source</a></li>
             <li class="nav-item"><a href="{% url 'attribution' %}" class="nav-link px-2 text-muted">Attribution</a></li>
         </ul>
-        <p class="text-center text-muted">© {% now 'Y' %}, QCS</p>
+        <p class="text-center text-muted">© 2022-{% now 'Y' %}, QCS</p>
     </div>
 </footer>

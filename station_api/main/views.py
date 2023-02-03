@@ -1,3 +1,4 @@
+from django.contrib.admin.views.decorators import staff_member_required
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from main.forms import QuestionForm
@@ -45,6 +46,41 @@ def live_view(request):
         request=request,
         template_name=template_name,
         context=context,
+    )
+
+
+@staff_member_required
+def api_debug(request):
+    template_name = 'main/api_debug.html'
+
+    f = request.GET.get('id')
+    status = request.GET.get('status')
+    
+    if f and status and f.isdigit() and len(status) == 2 and status.isdigit():
+        station = get_object_or_404(Station, id=int(f))
+        a, b = map(int, status)
+        station.opened = bool(a)
+        station.done = bool(b)
+        station.save()
+        return HttpResponse(1)
+    
+    context = {
+        'stations': Station.objects.all(),
+    }
+    
+    return render(
+        request=request,
+        template_name=template_name,
+        context=context,
+    )
+
+
+def gallery(request):
+    template_name = 'main/gallery.html'
+    
+    return render(
+        request=request,
+        template_name=template_name,
     )
 
 

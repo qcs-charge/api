@@ -3,6 +3,7 @@
 {% url 'api_docs' as api_docs_url %}
 {% url 'homepage' as homepage_url %}
 {% url 'live_view' as live_view_url %}
+{% url 'gallery' as gallery_url %}
 <header class="p-3 mb-3 border-bottom">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -13,6 +14,7 @@
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="{{ homepage_url }}" class="nav-link px-2 {% if request.path == homepage_url %}link-secondary{% else %}link-dark{% endif %}">Overview</a></li>
+                <li><a href="{{ gallery_url }}" class="nav-link px-2 {% if request.path == gallery_url %}link-secondary{% else %}link-dark{% endif %}">Gallery</a></li>
                 <li><a href="{{ api_docs_url }}" class="nav-link px-2 {% if request.path == api_docs_url or request.path == api_url %}link-secondary{% else %}link-dark{% endif %}">API Docs</a></li>
                 <li><a href="{{ live_view_url }}" class="nav-link px-2 {% if request.path == live_view_url %}link-secondary{% else %}link-dark{% endif %}">Live View</a></li>
                 <li><a href="{% url 'source' %}" target="_blank" class="nav-link px-2 link-dark">Source</a></li>

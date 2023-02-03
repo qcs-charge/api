@@ -2,11 +2,20 @@
 
 {% block content %}
 <div class="container">
+    {% if user.is_active and user.is_staff %}
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Live View</li>
+            <li class="breadcrumb-item"><a href="{% url 'api_debug' %}">Debugging</a></li>
+        </ol>
+    </nav>
+    {% endif %}
+    
     <div class="d-flex justify-content-between align-items-end">
         <h1 class="display-5 fw-bold">Live View</h1>
         <p><a onclick="window.location.reload();" class="btn btn-dark">Reload</a></p>
     </div>
-
+    
     <table class="table">
         <thead style="font-weight: bold;">
             <tr>

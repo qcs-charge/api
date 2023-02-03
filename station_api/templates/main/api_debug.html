@@ -1,0 +1,87 @@
+{% extends 'includes/base.html' %}
+
+{% block content %}
+<div class="container">
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'live_view' %}">Live View</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Debugging</li>
+        </ol>
+    </nav>
+
+    <div class="alert alert-danger">
+        Вы зашли в режим отладки API. Убедитесь, что вы не прервете работу других зарядных станций, или перейдите на станицу <a href="{% url 'live_view' %}">Live View</a>, чтобы не изменить состояние подключенных к системе зарядных станций!
+    </div>
+
+    <div class="d-flex justify-content-between align-items-end">
+        <h1 class="display-5 fw-bold">API Debug</h1>
+        <p><a onclick="window.location.reload();" class="btn btn-dark">Reload</a></p>
+    </div>
+      
+    <table class="table text-center">
+        <thead style="font-weight: bold;">
+            <tr>
+                <td scope="col">#</td>
+                <td scope="col">ID</td>
+                <td scope="col">Aruco ID</td>
+                <td scope="col">Opened</td>
+                <td scope="col">Done</td>
+                <td scope="col">Vacate</td>
+                <td scope="col">Confirm</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in stations %}
+            <tr>
+                <td scope="row">{{ forloop.counter }}</td>
+
+                <td><code>{{ i.id }}</code></td>
+                
+                <td><code>aruco_{{ i.aruco }}</code></td>
+                
+                {% if i.opened %}
+                <td><input type="checkbox" id="opened{{ i.id }}" initial="1" checked></td>
+                {% else %}
+                <td><input type="checkbox" id="opened{{ i.id }}" initial="0"></td>
+                {% endif %}
+
+                {% if i.done %}
+                <td><input type="checkbox" id="done{{ i.id }}" initial="1" checked></td>
+                {% else %}
+                <td><input type="checkbox" id="done{{ i.id }}" initial="0"></td>
+                {% endif %}
+
+                {% if i.disabled %}
+                <td class="table-danger">✗</td>
+                {% else %}
+                <td class="table-success">✓</td>
+                {% endif %}
+
+                <td><button class="btn btn-sm btn-outline-dark" onclick="confirm('{{ i.id }}')">OK</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function confirm(stId) {
+        opened = document.getElementById(`opened${stId}`);
+        done = document.getElementById(`done${stId}`);
+
+        code1 = +opened.checked;
+        code2 = +done.checked;
+
+        init1 = opened.getAttribute("initial");
+        init2 = done.getAttribute("initial");
+
+        if (code1 != init1 || code2 != init2) {
+            const Http = new XMLHttpRequest();
+            Http.open("GET", `?id=${stId}&status=${code1}${code2}`);
+            Http.send();
+            Http.onreadystatechange = (e) => window.location.reload();
+        }
+
+    }
+</script>
+{% endblock content %}
