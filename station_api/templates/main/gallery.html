@@ -10,41 +10,38 @@
 <div class="container">
     <h1 class="display-5 fw-bold">Галерея</h1>
 
-    <div class="row">
-        <div class="col-12 col-md-6">
-            <div class="card mt-3" style="aspect-ratio: 16 / 9">
+    <div class="grid" data-masonry='{ "itemSelector": ".grid-item" }'>
+        <div class="grid-item px-2 py-2 col-12 col-md-6 col-lg-4">
+            <div class="card" style="aspect-ratio: 16 / 9">
                 <iframe src="https://www.youtube.com/embed/y47A4Nyng0Y?mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="w-100 h-100 rounded"></iframe>
             </div>
         </div>
-        <div class="col-12 col-md-6">
-            <div class="card mt-3" style="aspect-ratio: 16 / 9">
+        <div class="grid-item px-2 py-2 col-12 col-md-6 col-lg-4">
+            <div class="card" style="aspect-ratio: 16 / 9">
                 <iframe src="https://www.youtube.com/embed/3fGZnwB7Unw?mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="w-100 h-100 rounded"></iframe>
             </div>
         </div>
-        <div class="col-12 col-md-6">
-            <div class="card mt-3" style="aspect-ratio: 16 / 9">
+        <div class="grid-item px-2 py-2 col-12 col-md-6 col-lg-4">
+            <div class="card" style="aspect-ratio: 16 / 9">
                 <iframe src="https://www.youtube.com/embed/pyPr9T-5rjI?mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="w-100 h-100 rounded"></iframe>
             </div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 mt-3">
+        <div class="grid-item px-2 py-2 col-12 col-md-6 col-lg-4">
             <a href="{% static 'img/render.jpeg' %}" data-fancybox="gallery">
                 <img src="{% static 'img/render_thumb.jpeg' %}" alt class="w-100 rounded">
             </a>
         </div>
-        <div class="col-12 col-md-6 col-lg-4 mt-3">
+        <div class="grid-item px-2 py-2 col-12 col-md-6 col-lg-4">
             <a href="{% static 'img/model.png' %}" data-fancybox="gallery">
                 <img src="{% static 'img/model.png' %}" alt class="w-100 rounded">
             </a>
         </div>
-        <div class="col-12 col-md-6 col-lg-4 mt-3">
+        <div class="grid-item px-2 py-2 col-12 col-md-6 col-lg-4">
             <a href="{% static 'img/prototype1.jpg' %}" data-fancybox="gallery">
                 <img src="{% static 'img/prototype1_thumb.jpg' %}" alt class="w-100 rounded">
             </a>
         </div>
-        <div class="col-12 col-md-6 col-lg-4 mt-3">
+        <div class="grid-item px-2 py-2 col-12 col-md-6 col-lg-4">
             <a href="{% static 'img/prototype2.jpg' %}" data-fancybox="gallery">
                 <img src="{% static 'img/prototype2_thumb.jpg' %}" alt class="w-100 rounded">
             </a>
@@ -53,4 +50,5 @@
 </div>
 
 <script src="{% static 'js/fancybox.js' %}"></script>
+<script src="{% static 'js/masonry.js' %}"></script>
 {% endblock content %}
