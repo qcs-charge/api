@@ -1,6 +1,27 @@
 {% extends 'includes/base.html' %}
 {% load static %}
 
+{% block extra_head %}
+<style>
+    #promo-img-1 {
+        height: 60vh;
+        width: 100%;
+        background: url('{% static "img/render.jpeg" %}') 75%/cover no-repeat;
+    }
+    #promo-img-2 {
+        display: none;
+    }
+    @media screen and (max-width: 1024px) {
+        #promo-img-1 {
+            display: none;
+        }
+        #promo-img-2 {
+            display: block;
+        }
+    }
+</style>
+{% endblock extra_head %}
+
 {% block before_header %}
 {% if form_sent %}
 <div class="pt-5 pb-5 border-bottom shadow-lg bg-dark text-white" id="form_sent">
@@ -28,10 +49,9 @@
     </div>
 </div>
 
-<div
-    class="border-top border-bottom mt-5 mb-5 shadow-lg"
-    style="height: 60vh; width: 100%; background: url('{% static 'img/render.jpeg' %}') 75%/cover no-repeat;"
-></div>
+<div class="border-top border-bottom mt-5 mb-5 shadow-lg" id="promo-img-1"></div>
+
+<img src="{% static 'img/render.jpeg' %}" alt id="promo-img-2" class="w-100">
 
 <div class="px-4 my-5 py-5 text-center">
     <h2 class="display-4 fw-bold mt-5">

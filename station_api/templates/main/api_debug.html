@@ -21,9 +21,7 @@
     <table class="table text-center">
         <thead style="font-weight: bold;">
             <tr>
-                <td scope="col">#</td>
                 <td scope="col">ID</td>
-                <td scope="col">Aruco ID</td>
                 <td scope="col">Opened</td>
                 <td scope="col">Done</td>
                 <td scope="col">Vacate</td>
@@ -33,12 +31,8 @@
         <tbody>
             {% for i in stations %}
             <tr>
-                <td scope="row">{{ forloop.counter }}</td>
+                <td scope="row"><code>{{ i.id }}</code></td>
 
-                <td><code>{{ i.id }}</code></td>
-                
-                <td><code>aruco_{{ i.aruco }}</code></td>
-                
                 {% if i.opened %}
                 <td><input type="checkbox" id="opened{{ i.id }}" initial="1" checked></td>
                 {% else %}
@@ -81,7 +75,6 @@
             Http.send();
             Http.onreadystatechange = (e) => window.location.reload();
         }
-
     }
 </script>
 {% endblock content %}

@@ -9,33 +9,35 @@
 {% block content %}
 <div class="container">
     <h1 class="display-5 fw-bold">Галерея</h1>
-
-    <div class="grid" data-masonry='{ "itemSelector": ".grid-item" }'>
-        <div class="grid-item px-2 py-2 col-12 col-md-6 col-lg-4">
+    
+    <div class="row">
+        <div class="px-2 py-2 col-12 col-md-6 col-lg-4">
             <div class="card" style="aspect-ratio: 16 / 9">
                 <iframe src="https://www.youtube.com/embed/y47A4Nyng0Y?mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="w-100 h-100 rounded"></iframe>
             </div>
         </div>
-        <div class="grid-item px-2 py-2 col-12 col-md-6 col-lg-4">
+        <div class="px-2 py-2 col-12 col-md-6 col-lg-4">
             <div class="card" style="aspect-ratio: 16 / 9">
                 <iframe src="https://www.youtube.com/embed/rbzMgJ8kMyI?mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="w-100 h-100 rounded"></iframe>
             </div>
         </div>
-        <div class="grid-item px-2 py-2 col-12 col-md-6 col-lg-4">
+        <div class="px-2 py-2 col-12 col-md-6 col-lg-4">
             <div class="card" style="aspect-ratio: 16 / 9">
                 <iframe src="https://www.youtube.com/embed/W7D2i__39FE?mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="w-100 h-100 rounded"></iframe>
             </div>
         </div>
-        <div class="grid-item px-2 py-2 col-12 col-md-6 col-lg-4">
+        <div class="px-2 py-2 col-12 col-md-6 col-lg-4">
             <div class="card" style="aspect-ratio: 16 / 9">
                 <iframe src="https://www.youtube.com/embed/3fGZnwB7Unw?mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="w-100 h-100 rounded"></iframe>
             </div>
         </div>
-        <div class="grid-item px-2 py-2 col-12 col-md-6 col-lg-4">
+        <div class="px-2 py-2 col-12 col-md-6 col-lg-4">
             <div class="card" style="aspect-ratio: 16 / 9">
                 <iframe src="https://www.youtube.com/embed/pyPr9T-5rjI?mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="w-100 h-100 rounded"></iframe>
             </div>
         </div>
+    </div>
+    <div class="grid" data-masonry='{ "itemSelector": ".grid-item" }'>
         <div class="grid-item px-2 py-2 col-12 col-md-6 col-lg-4">
             <a href="{% static 'img/render.jpeg' %}" data-fancybox="gallery">
                 <img src="{% static 'img/render_thumb.jpeg' %}" alt class="w-100 rounded">
